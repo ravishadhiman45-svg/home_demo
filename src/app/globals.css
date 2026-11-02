@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0f1f19;
+  --color-muted: #55665f;
+  --color-gray-text: #676767;
+  --color-forest: #0d3b2e;
+  --color-surface: #f1f3f2;
+  --color-sky: #78bcff;
+  --color-brand: #1e71d6;
+  --color-brand-light: #1e88d8;
+  --color-page: #fdfdfd;
+  --color-charcoal: #404040;
+  --color-mist: #f3faff;
+  --color-lime: #d2f25a;
+  --color-line: #53a1ec;
+
+  /* Fluid type: exact at the 1920px design width, scales down below it */
+  --text-display: clamp(2.75rem, 5vw, 6rem);
+  --text-title: clamp(2.25rem, 4.375vw, 5.25rem);
+  --text-title-lg: clamp(2.25rem, 4.583vw, 5.5rem);
+  --text-lead: clamp(1.125rem, 1.458vw, 1.75rem);
+  --text-lead-lg: clamp(1.25rem, 1.667vw, 2rem);
+}
+
+@theme inline {
+  --font-sans: var(--ff-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-lato: var(--ff-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-poppins: var(--ff-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--ff-mono), ui-monospace, monospace;
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1920px;
+  padding-inline: max(1.25rem, 6.25vw);
+}
+
+/* Same edges as container-x, for content inside the 12px-inset hero/footer panels */
+@utility container-inset {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1896px;
+  padding-inline: max(1rem, calc(6.25vw - 12px));
+}
+
+/* Blue sky gradient shared by the hero and footer panels */
+@utility bg-sky-panel {
+  background-image: linear-gradient(
+    180deg,
+    #1b6dd5 0%,
+    #2578da 13%,
+    #3286e2 31%,
+    #3d93e9 44%,
+    #51a0ec 53%,
+    #6eb3f0 61%,
+    #8cc5f3 70%,
+    #cee7fa 79%,
+    #d9ecfb 84%,
+    #d2e9fb 100%
+  );
+}
+
+/* Inter Display cut, used by headings and the small text inside cards */
+@utility opsz-display {
+  font-variation-settings: "opsz" 32;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wheel {
+  to {
+    transform: rotate(calc(var(--wheel-step) * var(--wheel-count) * -1));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  /* Inter's optical size axis, tuned so text widths match the design */
+  font-variation-settings: "opsz" 22;
+}
+
+h1,
+h2 {
+  font-variation-settings: "opsz" 32;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
